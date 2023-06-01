@@ -1,41 +1,22 @@
-import { useState,useEffect} from 'react'
+
 import './App.css'
-import Memory from './components/Memory.jsx'
+import Brett from "./components/Brett.jsx";
+import {Provider} from "./Context.jsx";
+/*import {MemoryContext} from "./Context.jsx";*/
+import CardFront from "./components/CardFront.jsx";
+
 function App() {
-    const[data,setData]=useState(()=>{
-        const localData=localStorage.getItem("memory")
-        return localData?JSON.parse(localData):[]
-    });
-  const  fetchData=async()=>{
-        try {
-            const dataFetch = await fetch("https://rickandmortyapi.com/api/character/")
-            const dataJson = await dataFetch.json()
-            const results = dataJson.results.slice(0,6)
-            setData(results)
-            console.log(results)
-        }
-        catch (error){
-            console.log('chyba pri nacteni dat:',error)
-        }
-    }
-    useEffect(()=>{
+/*const {setData,data} = useContext(MemoryContext)
+    console.log(data)*/
 
-         if(data.length===0) {
-             fetchData();
-         }
-else {
-             localStorage.setItem("memory", JSON.stringify(data))
-         }
-    },[])
 
-       return (
-    <>
-        <h1>Memory</h1>
-
-       <Memory data={data}/>
-
-    </>
-  )
+    return (
+        <Provider>
+            <Brett>
+                <CardFront/>
+            </Brett>
+        </Provider>
+    )
 }
 
 export default App

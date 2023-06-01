@@ -5,4 +5,21 @@
   justify-items: center;
   align-items: stretch;
   gap: 1rem;
+
+}
+
+img {
+background-color: yellow;
+  z-index: 1;
+}
+
+.backpage{
+  filter: grayscale(80%);
+
+
+ width: 200px;
+height: 200px;
+  background-color: lightcoral;
+  z-index: 2;
+
 }
